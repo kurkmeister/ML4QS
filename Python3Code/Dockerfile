@@ -1,5 +1,5 @@
-FROM ubuntu:20.04
-FROM python:3.8.8
+FROM --platform=linux/amd64 ubuntu:20.04
+FROM --platform=linux/amd64 python:3.8.8
 
 RUN apt-get update
 RUN apt-get install sudo
@@ -17,4 +17,10 @@ RUN xargs -L 1 pip3 install < /src/requirements_git.txt
 
 WORKDIR /root
 RUN python3 --version
+
+# Copy project files (optional - you can also use volume mounting)
+# COPY . /root/
+
+# Set bash as the default command instead of Python CLI
+CMD ["/bin/bash"]
 
